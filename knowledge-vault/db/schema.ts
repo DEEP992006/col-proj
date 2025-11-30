@@ -4,5 +4,5 @@ export const knowledgeTable = pgTable("knowledge", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   name: varchar({ length: 255 }).notNull(),
   img: varchar().notNull(),
-  desc: varchar(),
+  desc: varchar().notNull(),
 });

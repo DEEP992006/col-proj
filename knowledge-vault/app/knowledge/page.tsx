@@ -30,7 +30,7 @@ const page = () => {
         const getknowledge = await AllKnowledgeAction()
 
         setShowknowledge(getknowledge)
-        console.log(getknowledge)
+        // console.log(getknowledge)
     }
 
     // Render knowledge cards in a grid layout

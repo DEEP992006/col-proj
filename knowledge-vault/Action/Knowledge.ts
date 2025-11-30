@@ -3,6 +3,7 @@
 import { TechItem } from "@/lib/tech-data"
 import { db } from ".."
 import { knowledgeTable } from "@/db/schema"
+import { eq } from "drizzle-orm"
 
 // New knowledge
 export const NewKnowledgeAction = async (data:TechItem) => {
@@ -17,4 +18,12 @@ export const AllKnowledgeAction = async ()=> {
     const all =await db.select().from(knowledgeTable)
     // console.log(all)
     return all
+}
+
+// Single knowledge action
+export const SingleKnowledgeAction = async (id:Number) => {
+    // console.log(id)
+    const single = await db.select().from(knowledgeTable).where(eq(knowledgeTable.id,Number(id)))
+    // console.log(single)
+    return single[0]
 }
