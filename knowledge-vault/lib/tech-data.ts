@@ -5,7 +5,7 @@ export interface TechItem {
   img: string;
 }
 
-export const getTechKnowledgeVault = (): TechItem[] => {
+export const getTechKnowledgeVault = (email:string): TechItem[] => {
   return [
     {
       id: 1,
