@@ -27,7 +27,7 @@ const page = () => {
 
     // Fetch TechKnowledge data from backend
     const knowledge = async () => {
-        const getknowledge = await AllKnowledgeAction()
+        const getknowledge:TechItem[] = await AllKnowledgeAction()
 
         setShowknowledge(getknowledge)
         console.log(getknowledge)
