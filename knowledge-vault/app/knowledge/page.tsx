@@ -36,7 +36,7 @@ const page = () => {
     // Render knowledge cards in a grid layout
     return (
         <div>
-            {showknowledge && showknowledge.map((k) =>
+            {showknowledge && showknowledge.map((k:TechItem) =>
             // Call Knowledgecard from components
             <KnowledgeCard 
             key={k.id}

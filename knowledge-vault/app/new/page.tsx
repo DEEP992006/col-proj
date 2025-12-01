@@ -4,8 +4,15 @@ import React from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Input } from "@/components/ui/input"
 import { NewKnowledgeAction } from '@/Action/Knowledge'
+import { useRouter } from 'next/navigation'
+import { useCurrentUser } from '@/hook/hook'
+import { log } from 'console'
 
 const page = () => {
+
+  const router = useRouter()
+
+  const {email} = useCurrentUser()
 
      const {
     register,
@@ -15,7 +22,9 @@ const page = () => {
   } = useForm<TechItem>()
 
   const onsubmit = async (data:TechItem) => {
-    await NewKnowledgeAction(data)
+    const newdata = { ...data, email: email || "" }
+    // console.log(newdata)
+    await NewKnowledgeAction(newdata)
   }
 
   return (
@@ -23,7 +32,7 @@ const page = () => {
      
     <form onSubmit={handleSubmit(onsubmit)}>
       
-      <Input  {...register("name")} />
+      <Input {...register("name")} />
       {errors.name && <span>This field is required</span>}
 
       <Input {...register("desc", { required: true })} />
@@ -32,7 +41,7 @@ const page = () => {
       <Input {...register("img", { required: true })} />
       {errors.img && <span>This field is required</span>}
 
-      <Input type="submit" />
+      <Input onClick={()=>router.push("/knowledge")} type="submit" />
     </form>
     </div>
   )

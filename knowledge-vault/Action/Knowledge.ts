@@ -27,3 +27,11 @@ export const SingleKnowledgeAction = async (id:Number) => {
     // console.log(single)
     return single[0]
 }
+
+// User all knowledge
+export const UserallKnowledgeAction = async (email:string) => {
+    // console.log(email)
+    const userall = await db.select().from(knowledgeTable).where(eq(knowledgeTable.email,email))
+    // console.log(userall)
+    return userall
+}
