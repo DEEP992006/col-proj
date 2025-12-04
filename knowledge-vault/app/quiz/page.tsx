@@ -1,6 +1,6 @@
 "use client"
 
-import { getQuizAction, Quiz } from "@/Action/QuizAction"
+import { APIAction, getQuizAction, Quiz } from "@/Action/QuizAction"
 import React, { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Header } from "@/components/ui/header"
@@ -15,9 +15,13 @@ const Page = () => {
     loadAllQuizzes()
   }, [])
 
+
   const loadAllQuizzes = async () => {
     const allQuiz = await getQuizAction()
     setQuizzes(allQuiz as Quiz[])
+    const a = await APIAction("What is typeScript?")
+    console.log(a);
+    
   }
 
   const handleQuizClick = (id: number) => {

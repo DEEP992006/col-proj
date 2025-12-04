@@ -3,6 +3,7 @@
 import { questionTable, quizTable } from "@/db/schema";
 import { db } from "..";
 import { eq } from "drizzle-orm";
+import { GoogleGenAI } from "@google/genai";
 
 // MCQ Interface
 export interface MCQ {
@@ -66,5 +67,14 @@ export const SingleQuizAction = async (id: number) => {
     }
 }
 
+export const APIAction = async (prompt:string) => {
+    const ai = new GoogleGenAI({});
+    const response = await ai.models.generateContent({
+    model: "gemini-2.5-flash",
+    contents: prompt,
+  });
+  console.log(response.text);
+  return response.text
+}
 
 
