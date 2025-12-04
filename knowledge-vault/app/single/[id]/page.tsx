@@ -135,31 +135,20 @@ const Page = () => {
 
               {/* TITLE */}
               <div className="space-y-3 p-5 rounded-xl bg-slate-900/20 border border-white/10">
-                <div className="flex items-center gap-2 text-slate-500">
-                  <Book size={18} className="text-cyan-300" />
-                  <p className="text-xs uppercase tracking-wider font-medium">Title</p>
-                </div>
                 <p className="text-2xl font-bold text-white">{getsingleTech.name}</p>
+              
+
+              {/* DESCRIPTION */}
+             
+
+                <p className="text-slate-300 whitespace-pre-line leading-relaxed">
+                  {getsingleTech.desc}
+                </p>
               </div>
 
               {/* AUTHOR */}
               <div className="space-y-3 p-5 rounded-xl bg-slate-900/20 border border-white/10">
-                <div className="flex items-center gap-2 text-slate-500">
-                  <User size={18} className="text-purple-300" />
-                  <p className="text-xs uppercase tracking-wider font-medium">Author</p>
-                </div>
                 <p className="text-lg text-white">{getsingleTech.email}</p>
-              </div>
-
-              {/* DESCRIPTION */}
-              <div className="space-y-3 p-5 rounded-xl bg-slate-900/20 border border-white/10">
-                <div className="flex items-center gap-2 text-slate-500">
-                  <FileText size={18} className="text-pink-300" />
-                  <p className="text-xs uppercase tracking-wider font-medium">Description</p>
-                </div>
-                <p className="text-slate-300 whitespace-pre-line leading-relaxed">
-                  {getsingleTech.desc}
-                </p>
               </div>
 
             </CardContent>
