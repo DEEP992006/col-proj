@@ -146,7 +146,7 @@ const Page = () => {
                 </p>
               </div>
 
-                            {/* AUTHOR */}
+              {/* AUTHOR */}
               <div className="space-y-3 p-5 rounded-xl bg-slate-900/20 border border-white/10">
                 <p className="text-lg text-white">{getsingleTech.email}</p>
               </div>

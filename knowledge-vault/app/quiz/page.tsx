@@ -8,6 +8,7 @@ import { Footer } from "@/components/footer"
 
 const Page = () => {
   const [quizzes, setQuizzes] = useState<Quiz[] | null>(null)
+  const [searchTerm, setSearchTerm] = useState("")
   const router = useRouter()
 
   useEffect(() => {
@@ -23,12 +24,17 @@ const Page = () => {
     router.push(`/quiz/${id}`)
   }
 
+  // Filter quizzes based on search term
+  const filteredQuizzes = quizzes?.filter((q) =>
+    q.technology.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    q.difficulty.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+
   return (
     <div className="min-h-screen bg-black text-white px-4">
       <Header />
 
       <div className="max-w-7xl mx-auto relative">
-
         {/* ADD NEW QUIZZES BUTTON */}
         <button
           onClick={() => router.push("/newquiz")}
@@ -47,8 +53,8 @@ const Page = () => {
         <div className="mb-12 py-16">
           <h1
             className="
-              text-5xl font-bold 
-              bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 
+              text-5xl font-bold
+              bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400
               bg-clip-text text-transparent
             "
           >
@@ -60,18 +66,36 @@ const Page = () => {
           </p>
         </div>
 
+        {/* SEARCH BAR */}
+        <div className="mb-10">
+          <input
+            type="text"
+            placeholder="Search quizzes by technology or difficulty..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="
+              w-full md:w-1/2 px-5 py-3 rounded-xl
+              bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900
+              border border-white/10 shadow-lg
+              text-white placeholder-slate-400
+              focus:outline-none focus:ring-2 focus:ring-cyan-400
+              transition-all duration-300
+            "
+          />
+        </div>
+
         {/* QUIZ LIST */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {quizzes &&
-            quizzes.map((q) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+          {filteredQuizzes && filteredQuizzes.length > 0 ? (
+            filteredQuizzes.map((q) => (
               <div
                 key={q.id}
                 onClick={() => handleQuizClick(q.id)}
                 className="
                   group relative cursor-pointer
-                  rounded-2xl overflow-hidden 
+                  rounded-2xl overflow-hidden
                   bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900
-                  border border-white/10 
+                  border border-white/10
                   shadow-xl transition-all duration-300
                   hover:shadow-2xl hover:border-cyan-400/30 hover:-translate-y-2
                 "
@@ -89,10 +113,10 @@ const Page = () => {
                 <div className="p-6 relative">
                   <h2
                     className="
-                      text-2xl font-semibold 
+                      text-2xl font-semibold
                       transition-all duration-300
                       group-hover:text-transparent
-                      group-hover:bg-gradient-to-r 
+                      group-hover:bg-gradient-to-r
                       group-hover:from-cyan-300 group-hover:via-purple-300 group-hover:to-pink-300
                       group-hover:bg-clip-text
                     "
@@ -115,22 +139,27 @@ const Page = () => {
                 {/* Corner Glows */}
                 <div
                   className="
-                    absolute -top-6 -right-6 w-24 h-24 
-                    bg-cyan-500/20 blur-3xl rounded-full 
+                    absolute -top-6 -right-6 w-24 h-24
+                    bg-cyan-500/20 blur-3xl rounded-full
                     opacity-0 group-hover:opacity-60 transition-all duration-500
                   "
                 ></div>
                 <div
                   className="
-                    absolute -bottom-6 -left-6 w-24 h-24 
-                    bg-purple-500/20 blur-3xl rounded-full 
+                    absolute -bottom-6 -left-6 w-24 h-24
+                    bg-purple-500/20 blur-3xl rounded-full
                     opacity-0 group-hover:opacity-60 transition-all duration-500
                   "
                 ></div>
               </div>
-            ))}
+            ))
+          ) : (
+            <p className="text-slate-400 text-lg">No quizzes found.</p>
+          )}
         </div>
       </div>
+
+      <Footer />
     </div>
   )
 }
