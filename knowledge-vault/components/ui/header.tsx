@@ -103,7 +103,7 @@ export function Header() {
               href="/signin"
               className={cn(
                 buttonVariants({ variant: 'outline' }),
-                "border-white/20 bg-white/5 backdrop-blur-md"
+                "border-white/20 bg-white/5 backdrop-blur-md text-white"
               )}
             >
               Sign In

@@ -1,64 +1,120 @@
 "use client"
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../card"
 import type { TechItem } from "@/lib/tech-data"
 import { ArrowRight } from "lucide-react"
 
 const KnowledgeCard = ({ id, img, name, desc }: TechItem) => {
   return (
-    <div className="relative group h-full">
-      {/* Premium glowing effect - multiple layers */}
-      <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500 -z-20 group-hover:blur-2xl" />
-      <div className="absolute -inset-0.5 bg-linear-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-50 blur-md transition-all duration-500 -z-10" />
-      
-      {/* Link to individual knowledge item detail page */}
-      <a href={`/single/${id}`} className="h-full block">
-        <Card className="h-full w-full rounded-2xl border border-white/10 shadow-2xl hover:shadow-2xl transition-all duration-500 hover:border-white/30 overflow-hidden bg-linear-to-br from-slate-900/50 to-slate-800/50 backdrop-blur-xl relative hover:-translate-y-2">
-          {/* Top accent line */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-cyan-400 via-purple-400 to-pink-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          
-          <CardContent className="p-0 relative overflow-hidden">
-            <div className="h-56 w-full bg-linear-to-br from-slate-700/60 to-slate-800/60 flex items-center justify-center overflow-hidden relative">
-              {/* Background pattern effect */}
-              <div className="absolute inset-0 opacity-20">
-                <div className="absolute inset-0" style={{
-                  backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(124,58,255,0.2) 0%, transparent 50%)',
-                }} />
-              </div>
-              
-              <img
-                className="h-44 w-44 object-contain group-hover:scale-125 transition-transform duration-500 drop-shadow-2xl relative z-10"
-                src={img || "/placeholder.svg"}
-                alt={name}
-              />
-              
-              {/* Hover overlay gradient */}
-              <div className="absolute inset-0 bg-linear-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </div>
-          </CardContent>
+    <a href={`/single/${id}`} className="block group h-full">
+      <Card className="
+        h-full w-full rounded-2xl 
+        bg-linear-to-br from-slate-900 to-slate-800 
+        border border-white/10 
+        shadow-xl hover:shadow-2xl 
+        hover:border-cyan-400/30 
+        transition-all duration-300 
+        overflow-hidden relative
+        hover:-translate-y-2
+      ">
+        
+        {/* Neon Hover Glow */}
+        <div className="
+          absolute inset-0 
+          rounded-2xl 
+          bg-linear-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 
+          opacity-0 group-hover:opacity-100 
+          blur-xl transition-all duration-500 pointer-events-none
+        "></div>
 
-          <CardHeader className="p-6 pb-4 relative">
-            <CardTitle className="text-xl font-bold text-white line-clamp-2 group-hover:text-transparent group-hover:bg-linear-to-r group-hover:from-cyan-300 group-hover:via-purple-300 group-hover:to-pink-300 group-hover:bg-clip-text transition-all duration-300">
-              {name}
-            </CardTitle>
-            <CardDescription className="text-sm text-slate-300 line-clamp-2 mt-3 leading-relaxed">
-              {desc}
-            </CardDescription>
-          </CardHeader>
+        {/* IMAGE */}
+        <CardContent className="p-0 relative">
+          <div className="
+            h-52 w-full flex items-center justify-center 
+            bg-linear-to-br from-slate-800/60 to-slate-900/60 
+            overflow-hidden relative
+          ">
+            {/* Subtle radial pattern like Explore page */}
+            <div
+              className="absolute inset-0 opacity-10"
+              style={{
+                backgroundImage:
+                  "radial-gradient(circle at 30% 30%, rgba(168,85,247,0.4), transparent 60%)",
+              }}
+            />
 
-          {/* Bottom action section */}
-          <div className="px-6 pb-6 pt-3 border-t border-white/10 relative">
-            <button className="w-full bg-linear-to-r from-cyan-500/80 to-purple-600/80 text-white text-sm font-semibold py-3 px-4 rounded-xl hover:from-cyan-500 hover:to-purple-600 transition-all duration-300 flex items-center justify-between group/btn shadow-lg hover:shadow-xl hover:shadow-purple-500/50 backdrop-blur-sm border border-white/20">
-              <span>Explore Now</span>
-              <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
-            </button>
+            <img
+              src={img || "/placeholder.svg"}
+              alt={name}
+              className="
+                h-40 w-40 object-contain 
+                transition-all duration-500 
+                group-hover:scale-110 
+                relative z-10
+              "
+            />
+
+            {/* Top fade */}
+            <div className="
+              absolute inset-0 bg-gradient-to-t 
+              from-black/40 via-transparent to-transparent 
+            "></div>
           </div>
+        </CardContent>
 
-          {/* Corner accent decorations */}
-          <div className="absolute top-0 right-0 w-20 h-20 bg-linear-to-br from-cyan-400/20 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-5" />
-          <div className="absolute bottom-0 left-0 w-20 h-20 bg-linear-to-tr from-purple-400/20 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-5" />
-        </Card>
-      </a>
-    </div>
+        {/* TEXT CONTENT */}
+        <CardHeader className="p-6 pb-4">
+          <CardTitle className="
+            text-xl font-semibold text-white 
+            transition-all duration-300 
+            group-hover:text-transparent 
+            group-hover:bg-linear-to-r 
+            group-hover:from-cyan-300 
+            group-hover:via-purple-300 
+            group-hover:to-pink-300 
+            group-hover:bg-clip-text
+          ">
+            {name}
+          </CardTitle>
+
+          <CardDescription className="
+            text-slate-300 text-sm mt-2 line-clamp-2
+          ">
+            {desc}
+          </CardDescription>
+        </CardHeader>
+
+        {/* BUTTON */}
+        <div className="px-6 pb-6 pt-3 border-t border-white/10">
+          <button className="
+            w-full flex items-center justify-between 
+            py-3 px-4 rounded-xl 
+            bg-linear-to-r from-cyan-600/70 to-purple-700/70 
+            text-white font-medium text-sm 
+            border border-white/10 
+            shadow-md hover:shadow-xl 
+            hover:from-cyan-500 hover:to-purple-600 
+            transition-all duration-300
+          ">
+            Explore Now
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </button>
+        </div>
+
+        {/* Corner Glows */}
+        <div className="
+          absolute -top-5 -right-5 w-28 h-28 
+          bg-cyan-500/20 blur-3xl rounded-full 
+          opacity-0 group-hover:opacity-60 transition-all duration-500
+        "></div>
+
+        <div className="
+          absolute -bottom-5 -left-5 w-28 h-28 
+          bg-purple-500/20 blur-3xl rounded-full 
+          opacity-0 group-hover:opacity-60 transition-all duration-500
+        "></div>
+      </Card>
+    </a>
   )
 }
 

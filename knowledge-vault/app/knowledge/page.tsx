@@ -34,7 +34,7 @@ export default function ExplorePage() {
   })
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col bg-black text-white">
       <Header />
       <div className="min-h-screen bg-black">
         <div className="max-w-7xl mx-auto px-4 py-12">
@@ -109,6 +109,6 @@ export default function ExplorePage() {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   )
 }
